@@ -65,7 +65,8 @@
     "description": "An inline field that allows some simple inline formatting (bold, italic, ...)"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "name": "@propagande/strapi-plugin-text-field-formatting",
   "description": "An inline field that allows some simple inline formatting (bold, italic, ...)",
