@@ -62,7 +62,7 @@
     "displayName": "Text Field Formatting",
     "description": "An inline field that allows some simple inline formatting (bold, italic, ...)"
   },
-  "name": "propagande-text-field-formatting",
+  "name": "@propagande/strapi-plugin-text-field-formatting",
   "description": "An inline field that allows some simple inline formatting (bold, italic, ...)",
   "license": "MIT",
   "author": "Benjamin Robinet <benjamin@propagande.studio>"
