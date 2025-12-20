@@ -71,5 +71,9 @@
   "name": "@propagande/strapi-plugin-text-field-formatting",
   "description": "An inline field that allows some simple inline formatting (bold, italic, ...)",
   "license": "MIT",
-  "author": "Benjamin Robinet <benjamin@propagande.studio>"
+  "author": "Benjamin Robinet <benjamin@propagande.studio>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/propagande-studio/strapi-plugin-text-field-formatting.git"
+  }
 }
