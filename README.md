@@ -21,9 +21,11 @@ For each field, you can configure:
 ## Installation
 
 ```bash
-npm install propagande-text-field-formatting
+npm install @propagande/strapi-plugin-text-field-formatting
 # or
-yarn add propagande-text-field-formatting
+yarn add @propagande/strapi-plugin-text-field-formatting
+# or
+bun add @propagande/strapi-plugin-text-field-formatting
 ```
 
 Then, add the plugin to your Strapi configuration in `config/plugins.js` (or `config/plugins.ts`):
