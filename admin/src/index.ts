@@ -1,10 +1,11 @@
 import { getTranslation } from './utils/getTranslation';
 import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
-import { PluginIcon } from './components/PluginIcon';
+import PluginIcon from './components/PluginIcon';
+import { StrapiApp } from '@strapi/admin/strapi-admin';
 
 export default {
-  register(app: any) {
+  register(app: StrapiApp) {
     // Register custom field
     app.customFields.register({
       name: 'inline-text-formatter',
@@ -18,9 +19,11 @@ export default {
         id: getTranslation('field.description'),
         defaultMessage: 'A text field with inline formatting options',
       },
+      // @ts-expect-error
       icon: PluginIcon,
       components: {
         Input: async () =>
+          // @ts-expect-error
           import('./components/InlineTextFormatter').then((module) => ({
             default: module.InlineTextFormatter,
           })),
@@ -34,6 +37,7 @@ export default {
             },
             items: [
               {
+                // @ts-expect-error
                 name: 'options.output',
                 type: 'select',
                 intlLabel: {
@@ -69,6 +73,7 @@ export default {
                 ],
               },
               {
+                // @ts-expect-error
                 name: 'options.allowNewlines',
                 type: 'checkbox',
                 intlLabel: {
@@ -90,6 +95,7 @@ export default {
             },
             items: [
               {
+                // @ts-expect-error
                 name: 'options.allowBold',
                 type: 'checkbox',
                 intlLabel: {
@@ -99,6 +105,7 @@ export default {
                 defaultValue: true,
               },
               {
+                // @ts-expect-error
                 name: 'options.allowItalic',
                 type: 'checkbox',
                 intlLabel: {
@@ -108,6 +115,7 @@ export default {
                 defaultValue: true,
               },
               {
+                // @ts-expect-error
                 name: 'options.allowUnderline',
                 type: 'checkbox',
                 intlLabel: {
@@ -117,6 +125,7 @@ export default {
                 defaultValue: true,
               },
               {
+                // @ts-expect-error
                 name: 'options.allowStrikethrough',
                 type: 'checkbox',
                 intlLabel: {
@@ -126,6 +135,7 @@ export default {
                 defaultValue: true,
               },
               {
+                // @ts-expect-error
                 name: 'options.allowCode',
                 type: 'checkbox',
                 intlLabel: {
@@ -135,6 +145,7 @@ export default {
                 defaultValue: true,
               },
               {
+                // @ts-expect-error
                 name: 'options.allowLink',
                 type: 'checkbox',
                 intlLabel: {
@@ -166,20 +177,6 @@ export default {
             ],
           },
         ],
-      },
-    });
-
-    app.addMenuLink({
-      to: `plugins/${PLUGIN_ID}`,
-      icon: PluginIcon,
-      intlLabel: {
-        id: `${PLUGIN_ID}.plugin.name`,
-        defaultMessage: PLUGIN_ID,
-      },
-      Component: async () => {
-        const { App } = await import('./pages/App');
-
-        return App;
       },
     });
 
