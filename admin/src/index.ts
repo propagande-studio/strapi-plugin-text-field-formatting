@@ -132,7 +132,7 @@ export default {
                   id: getTranslation('settings.format.strikethrough'),
                   defaultMessage: 'Strikethrough',
                 },
-                defaultValue: true,
+                defaultValue: false,
               },
               {
                 // @ts-expect-error
@@ -142,7 +142,7 @@ export default {
                   id: getTranslation('settings.format.code'),
                   defaultMessage: 'Inline Code',
                 },
-                defaultValue: true,
+                defaultValue: false,
               },
               {
                 // @ts-expect-error
@@ -152,7 +152,7 @@ export default {
                   id: getTranslation('settings.format.link'),
                   defaultMessage: 'Link',
                 },
-                defaultValue: true,
+                defaultValue: false,
               },
             ],
           },
