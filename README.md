@@ -1,4 +1,10 @@
-# Propagande Text Field Formatting
+# Strapi Plugin Text Field Formatting _<ins>by [PROPAGANDE](https://propagande.studio)</ins>_
+
+[![npm version](https://img.shields.io/npm/v/@propagande/strapi-plugin-text-field-formatting.svg)](https://www.npmjs.com/package/@propagande/strapi-plugin-text-field-formatting)
+[![npm downloads](https://img.shields.io/npm/dm/@propagande/strapi-plugin-text-field-formatting.svg)](https://www.npmjs.com/package/@propagande/strapi-plugin-text-field-formatting)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Strapi v5](https://img.shields.io/badge/Strapi-v5-8e75ff.svg)](https://strapi.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
 
 A Strapi plugin that adds a custom field for inline text formatting. This plugin provides a simpler alternative to the full WYSIWYG editor, offering only inline formatting options.
 
