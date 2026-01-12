@@ -10,7 +10,7 @@ export default {
     app.customFields.register({
       name: 'inline-text-formatter',
       pluginId: PLUGIN_ID,
-      type: 'string',
+      type: 'text',
       intlLabel: {
         id: getTranslation('field.label'),
         defaultMessage: 'Inline Text Formatter',

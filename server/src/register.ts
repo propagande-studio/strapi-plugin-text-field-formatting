@@ -7,7 +7,11 @@ const register = ({ strapi }: { strapi: Core.Strapi }) => {
   strapi.customFields.register({
     name: 'inline-text-formatter',
     plugin: 'propagande-text-field-formatting',
-    type: 'string',
+    type: 'text',
+    inputSize: {
+      default: 6,
+      isResizable: true,
+    },
   });
 };
 
