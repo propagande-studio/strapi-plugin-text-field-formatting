@@ -38,15 +38,20 @@ export const InlineTextFormatter = React.forwardRef<HTMLDivElement, InlineTextFo
     if (options.allowLink !== false) allowedFormats.push('link');
 
     useEffect(() => {
-      if (editorRef.current && field.value) {
+      if (editorRef.current) {
         // Initialize content from value
-        if (output === 'html') {
-          editorRef.current.innerHTML = field.value;
+        if (field.value) {
+          if (output === 'html') {
+            editorRef.current.innerHTML = field.value;
+          } else {
+            editorRef.current.innerHTML = convertToHtml(field.value);
+          }
         } else {
-          editorRef.current.innerHTML = convertToHtml(field.value);
+          // Clear editor if value is empty
+          editorRef.current.innerHTML = '';
         }
       }
-    }, []);
+    }, [field.value, output]);
 
     const sanitizeHtml = (html: string): string => {
       // Create a temporary element to parse HTML
