@@ -41,16 +41,15 @@ export const InlineTextFormatter = React.forwardRef<HTMLDivElement, InlineTextFo
     useEffect(() => {
       // Only update editor content if the change is NOT from user input
       if (editorRef.current && !isUserInputRef.current) {
-        // Initialize content from value
-        if (field.value) {
-          if (output === 'html') {
-            editorRef.current.innerHTML = field.value;
-          } else {
-            editorRef.current.innerHTML = convertToHtml(field.value);
-          }
-        } else {
-          // Clear editor if value is empty
-          editorRef.current.innerHTML = '';
+        const newContent = field.value
+          ? output === 'html'
+            ? field.value
+            : convertToHtml(field.value)
+          : '';
+
+        // Only update if content actually differs to avoid triggering input events
+        if (editorRef.current.innerHTML !== newContent) {
+          editorRef.current.innerHTML = newContent;
         }
       }
       // Reset the flag after processing
@@ -312,11 +311,25 @@ export const InlineTextFormatter = React.forwardRef<HTMLDivElement, InlineTextFo
 
     const handleInput = () => {
       if (editorRef.current) {
-        // Mark that this change is from user input
-        isUserInputRef.current = true;
-        const htmlContent = editorRef.current.innerHTML;
+        let htmlContent = editorRef.current.innerHTML;
+
+        // Normalize: remove trailing <br> that browsers add to empty contentEditable
+        // or at the end of content
+        htmlContent = htmlContent.replace(/<br\s*\/?>$/i, '');
+
+        // If content is just a single <br>, treat it as empty
+        if (htmlContent === '<br>' || htmlContent === '<br/>') {
+          htmlContent = '';
+        }
+
         const outputValue = output === 'markdown' ? convertToMarkdown(htmlContent) : htmlContent;
-        field.onChange(name, outputValue);
+
+        // Only update if the value actually changed
+        if (field.value !== outputValue) {
+          // Mark that this change is from user input
+          isUserInputRef.current = true;
+          field.onChange(name, outputValue);
+        }
       }
     };
 
