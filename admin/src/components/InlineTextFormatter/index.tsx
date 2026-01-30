@@ -22,6 +22,7 @@ export const InlineTextFormatter = React.forwardRef<HTMLDivElement, InlineTextFo
     const field = useField(name);
     const editorRef = useRef<HTMLDivElement>(null);
     const [activeFormats, setActiveFormats] = useState<Set<string>>(new Set());
+    const isUserInputRef = useRef(false);
 
     // Get options from attribute (set in field configuration)
     const options = (attribute as any)?.options || {};
@@ -38,7 +39,8 @@ export const InlineTextFormatter = React.forwardRef<HTMLDivElement, InlineTextFo
     if (options.allowLink !== false) allowedFormats.push('link');
 
     useEffect(() => {
-      if (editorRef.current) {
+      // Only update editor content if the change is NOT from user input
+      if (editorRef.current && !isUserInputRef.current) {
         // Initialize content from value
         if (field.value) {
           if (output === 'html') {
@@ -51,6 +53,8 @@ export const InlineTextFormatter = React.forwardRef<HTMLDivElement, InlineTextFo
           editorRef.current.innerHTML = '';
         }
       }
+      // Reset the flag after processing
+      isUserInputRef.current = false;
     }, [field.value, output]);
 
     const sanitizeHtml = (html: string): string => {
@@ -308,6 +312,8 @@ export const InlineTextFormatter = React.forwardRef<HTMLDivElement, InlineTextFo
 
     const handleInput = () => {
       if (editorRef.current) {
+        // Mark that this change is from user input
+        isUserInputRef.current = true;
         const htmlContent = editorRef.current.innerHTML;
         const outputValue = output === 'markdown' ? convertToMarkdown(htmlContent) : htmlContent;
         field.onChange(name, outputValue);
